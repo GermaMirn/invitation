@@ -1,0 +1,231 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block style %}
+<style>
+    .menu {
+        display: flex;
+        flex-direction: column;
+        width: 250px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 14px;
+        margin: 20px 0px;
+    }
+
+    .menu__item {
+        border: 1px solid #333;
+        padding: 5px 10px;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    .menu__item:hover {
+        background-color: yellowgreen;
+        cursor: pointer;
+    }
+
+    .formButton {
+        margin-left: 10px;
+        background-color: yellow;
+    }
+
+    .formButton:hover {
+        background-color: yellowgreen;
+    }
+
+    .success {
+        color: green;
+        font-weight: 700;
+    }
+
+    .listBody {
+        margin-left: 30px;
+    }
+
+    .listItem {
+        margin-bottom: 15px;
+    }
+
+    .listValue {
+        padding-top: 20px
+    }
+
+    .options {
+        margin-left: 10px;
+        padding: 5px;
+        border: 1px solid #000;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .detail {
+        color: green;
+    }
+
+    .detail:hover {
+        background-color: green;
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="menu"></div>
+<main class="main"></main>
+
+
+
+<script>
+    const jsonFromBack = "{{ dataForFront|escapejs }}"
+    const json = JSON.parse(jsonFromBack);
+    const keysValue = Object.keys(json)
+
+    const main = document.querySelector('.main');
+
+    const guestsList = (json) => {
+        const listBody = document.createElement('ol');
+        listBody.className = 'listBody';
+
+        json.fio.forEach(element => {
+            const listItem = document.createElement('li');
+            listItem.className = 'listValue';
+
+            const listItemBody = document.createElement('span');
+            listItemBody.className = 'listItemBody';
+            listItemBody.textContent = element;
+
+            const optionDetail = document.createElement('span');
+            optionDetail.classList.add('options', 'detail');
+            optionDetail.textContent = 'подробнее';
+            optionDetail.id = element
+
+            if (optionDetail.onclick = function () {
+                let detail = document.getElementById(element);
+                detail.remove();
+
+                for (let indexKey = 1; indexKey < 4; indexKey++) {
+
+                    let indexValue = json["fio"].indexOf(element);
+                    let key = keysValue[indexKey];
+
+                    const listValue = document.createElement('ul');
+                    listValue.className = 'listValue';
+
+                    const value = document.createElement('li');
+                    value.className = 'value';
+                    value.textContent = json[key][indexValue];
+
+                    listValue.append(value);
+                    listItem.append(listValue);
+
+                }
+            })
+                listItem.append(listItemBody, optionDetail);
+
+            listBody.append(listItem);
+        });
+
+        return listBody;
+    };
+
+    const resultRequest = (json) => {
+        const listAnswer = document.createElement('ol');
+        listAnswer.className = 'listAnswer';
+
+        for (let keysJson = 4; keysJson < 7; keysJson++) {
+            const itemAnswer = document.createElement('li');
+            itemAnswer.className = 'listValue';
+            itemAnswer.id = keysJson;
+
+            const itemBody = document.createElement('span');
+            itemBody.className = 'listItemBody';
+            itemBody.textContent = keysValue[keysJson];
+
+            const optionDetail = document.createElement('span');
+            optionDetail.classList.add('options', 'detail');
+            optionDetail.textContent = 'подробнее';
+            optionDetail.id = keysJson + 4;
+
+            if (optionDetail.onclick = function () {
+
+                const listValue = document.createElement('ul');
+                listValue.className = 'listValue';
+
+                if (itemAnswer.id == "5") {
+                    let key = keysValue[5];
+
+                    const value = document.createElement('li');
+                    value.className = 'value';
+                    value.textContent = "peope who come with person - " + json[key];
+
+                    listValue.append(value);
+                    itemAnswer.append(listValue);
+
+                    const detail = document.getElementById("9")
+                    detail.remove();
+
+                } if (itemAnswer.id == "4") {
+                    const detail = document.getElementById("8")
+                    detail.remove();
+
+                    Object.keys(json.comeInfo).forEach(element => {
+                        const value = document.createElement('li');
+                        value.className = 'value';
+                        value.textContent = element + " - " + json["comeInfo"][element];
+
+                        listValue.append(value);
+                        itemAnswer.append(listValue);
+
+                    })
+                } if (itemAnswer.id == "6") {
+                    const detail = document.getElementById("10")
+                    detail.remove();
+
+                    Object.keys(json.beveragesInfo).forEach(element => {
+                        const value = document.createElement('li');
+                        value.className = 'value';
+                        value.textContent = element + " - " + json["beveragesInfo"][element];
+
+                        listValue.append(value);
+                        itemAnswer.append(listValue);
+
+                    })
+                }
+            })
+
+                itemAnswer.append(itemBody, optionDetail);
+
+            listAnswer.append(itemAnswer);
+        }
+        return listAnswer;
+
+    }
+
+    const menu = document.querySelector('.menu');
+    arrMenu = [
+        'Посмотреть информацию об гостях',
+        'Итоги',
+    ];
+
+    arrMenu.forEach((element, index) => {
+        const menuItem = document.createElement('div');
+        menuItem.className = 'menu__item';
+        menuItem.id = index + 1;
+        menuItem.textContent = element;
+        menu.append(menuItem);
+    });
+
+    menu.onclick = function (event) {
+        switch (+event.target.id) {
+            case 1:
+                main.innerHTML = '<h3>Информация о гостях</h3>';
+                main.append(guestsList(json));
+                break;
+            case 2:
+                main.innerHTML = '<h3>Итоги опросника</h3>';
+                main.append(resultRequest(json));
+                break;
+        }
+    };
+</script>
+{% endblock %}

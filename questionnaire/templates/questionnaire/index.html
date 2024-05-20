@@ -1,0 +1,357 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block link %}
+<link rel="stylesheet" href="static/css/style.css">{% endblock %}
+
+{% block content %}
+<main>
+  <!-- page 1 -->
+  <header>
+    <div class="invite">
+      ПРИГЛАШЕНИЕ
+    </div>
+  </header>
+  <div class="NamesAndDate">
+    <img src="static/images/names_date.webp" alt="names.dates">
+  </div>
+  <!-- page 1 -->
+
+  <!-- page 2 -->
+  <div class="object">
+    <div class="images img-dear_friends">
+      <img class="" src="static/images/dear_friends.svg" alt="">
+    </div>
+  </div>
+  <div class="object">
+    <div class="object-text">
+      <p>В нашей жизни произойдет очень важное событие - наша свадьба!<br><br>
+        Мы верим и надеемся, что этот день станет красивым началом
+        долгой и счастливой жизни.
+        Позвольте пригласить вас разделить с нами радость<br> этого дня.<br><br>
+        Подарите свою поддержку и добрые пожелания, а мы в свою очередь поделимся частичкой нашего счастья.
+      </p>
+    </div>
+  </div>
+
+  <div class="object">
+    <div class="images img-wedd">
+      <img class="" src="static/images/wedd.svg" alt="">
+    </div>
+  </div>
+  <!-- page 2 -->
+
+  <!-- page 3 -->
+  <div class="topPlanContainer">
+    <img class="plansvg" src="static/images/План.svg" alt="plan">
+    <h1 class="PlanDate"><br> Четверг, 8 августа 2024</h1>
+  </div>
+
+  <div class="plan">
+    <img class="planfoto" src="static/images/plan123.png" alt="plan">
+    <div class="planTextContainer">
+      <div class="planTextBlock1">
+          <h1 class="PlanTime">16:00</h1>
+          <h1 class="PlanName">Фуршет</h1>
+          <p class="PlanText">Подари нам свою улыбку <br> и возьми с собой хорошее настроение</p>
+      </div>
+      <div class="planTextBlock2">
+          <h1 class="PlanTime">17:00</h1>
+          <h1 class="PlanName">Церемония</h1>
+          <p class="PlanText">Может быть трогательно, разрешается всплакнуть</p>
+      </div>
+
+      <div class="planTextBlock3">
+          <h1 class="PlanTime">18:00</h1>
+          <h1 class="PlanName">Банкет</h1>
+          <p class="PlanText">Самое время для вкусной еды, танцев и конкурсов</p>
+      </div>
+
+      <div class="planTextBlock4">
+          <h1 class="PlanTime">22:00</h1>
+          <h1 class="PlanName">Торт</h1>
+          <p class="PlanText">заключительное событие нашего вечера</p>
+      </div>
+    </div>
+  </div>
+  <!-- page 3 -->
+  
+  <!-- page 4 -->
+  <div class="object">
+    <div class="images img-wishes">
+      <img class="" src="static/images/wishes.svg" alt="">
+    </div>
+  </div>
+
+  <div class="object">
+    <div class="images img-wedd2">
+      <img class="" src="static/images/wedd.svg" alt="">
+    </div>
+  </div>
+
+  <div class="object">
+    <div class="object-text text-wishes">
+      <p>Будем благодарны, если вы воздержитесь от криков горько на празднике. Для нас поцелуй это выражение чувств, он
+        не может быть по заказу.</p><br><br>
+      <p>Если хотите подарить нам ценный и нужный подарок, мы будем очень благодарны за вклад в бюджет нашей<br> молодой
+        семьи</p>
+    </div>
+  </div>
+  <!-- page 4 -->
+  
+  <!-- page 5 -->
+  <div class="object">
+    <div class="images img-ding">
+      <img class="" src="static/images/ding.svg" alt="">
+    </div>
+  </div>
+
+  <div class="object">
+    <div class="object-text gamma">
+      <p>Будем признательны, если вы поддержите цветовую гамму нашей свадьбы.</p>
+    </div>
+  </div>
+
+  <div class="object">
+    <div class="images man-gamma">
+      <img class="" src="static/images/man-gamma.svg" alt="">
+    </div>
+  </div>
+
+  <div class="object">
+    <div class="images woman-gamma">
+      <img class="" src="static/images/woman-gamma.svg" alt="">
+    </div>
+  </div>
+  <!-- page 5 -->
+
+  <!-- page 6 -->
+  <div class="object">
+    <div class="images img-location">
+      <img class="" src="static/images/location.svg" alt="">
+    </div>
+  </div>
+
+  <div class="object">
+    <div class="object-text location-text">
+      <p>Ресторан “Усадьба” Калининградская область, п. Орловка, ул. Заречная 8</p>
+    </div>
+  </div>
+
+  <div class="object">
+    <button class="button" id="mapButton">Посмотреть на карте</button>
+  </div>
+
+  <div class="object" id="map" style="display : none;">
+    <script type="text/javascript" charset="utf-8" async
+      src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3006b65469bfe46bf6d5b4872a8cb9dd5fdb777085f476fe7f05da01f62a7667&amp;width=1000&amp;height=400&amp;lang=ru_RU&amp;scroll=true"
+      id=""></script>
+  </div><br><br>
+  <!-- page 6 -->
+  
+  <!-- page 7 -->
+  <div id="textBeforeTheQuestionnaire">
+    <h1 class="answerqus">Ответьте пожалуйста на несколько вопросов, которые мы для вас подготовили </h1>
+    <img class="ArrowDown" src="static/images/icons8-двойная-стрелка-вниз.gif" alt="стрелочка вниз"></img>
+  </div>
+
+  <form action="" method="POST" id="idForForm">
+    {% csrf_token %}
+    <h1 class="mainword">ФИО</h1>
+
+    <div id="fio">
+      <input class="fioBox" type="text" placeholder="Напишите, пожалуйста, ваши ФИО" id="fioInput" name="fio" />
+    </div>
+
+    <h1 class="mainword">Сможете ли вы присутствовать на нашем торжестве?</h1>
+
+    <div class="listpad" id="comeR">
+      <input type="radio" id="IWillCome" name="come" class="radio" value="I will come">
+      <label for="IWillCome">Я с удовольствием приду</label><br>
+      <input type="radio" id="ICantCome" name="come" class="radio" value="I can't come">
+      <label for="ICantCome"> К сожалению, не смогу присутствовать</label><br>
+      <input type="radio" id="IWillInformYouLater" name="come" class="radio" value="I will inform you later">
+      <label for="IWillInformYouLater">Сообщу позже</label>
+    </div>
+
+    <div id="display">
+      <h1 class="mainword">Сколько людей придут вместе с вами?</h1>
+
+      <div id="fio">
+        <input class="numberBox" type="text" placeholder="Напишите,  пожалуйста, количество человек" id="numberPeople"
+          name="numberPeople" />
+      </div>
+
+      <h1 class="mainword">Что предпочитаете из напитков?</h1>
+
+      <div class="listpad">
+        <input type="radio" id="redWine" name="beverages" class="radioDispla" value="red wine">
+        <label for="redWine">Красное вино</label><br>
+        <input type="radio" id="whiteWine" name="beverages" class="radioDispla" value="white wine">
+        <label for="whiteWine">Белое вино</label><br>
+        <input type="radio" id="champagne" name="beverages" class="radioDispla" value="champagne">
+        <label for="champagne">Шампанское</label><br>
+        <input type="radio" id="cognac" name="beverages" class="radioDispla" value="cognac">
+        <label for="cognac">Коньяк</label><br>
+        <input type="radio" id="whiskey" name="beverages" class="radioDispla" value="whiskey">
+        <label for="whiskey">Виски</label><br>
+        <input type="radio" id="vodka" name="beverages" class="radioDispla" value="vodka">
+        <label for="vodka">Водка</label><br>
+        <input type="radio" id="I don't drink alcohol" name="beverages" class="radioDispla"
+          value="I don't drink alcohol">
+        <label for="I don't drink alcohol">Я не пью алкоголь</label><br>
+      </div>
+    </div>
+
+    <div id="buttonLocation">
+      <button id="button">Отправить</button>
+    </div>
+  </form>
+</main>
+
+<script>
+  const dataForBackend = [];
+  const dataJson = {};
+
+  var form = document.querySelector("form");
+  var button = document.getElementById("button");
+
+  function buttonState() {
+    button.setAttribute('disabled', true);
+    button.style.backgroundColor = "rgb(100, 100, 100)";
+  }
+  buttonState();
+
+  var checkPresence = document.getElementById("comeR");
+
+  checkPresence.addEventListener("mouseout", function () {
+    let come = document.querySelector('input[name=come]:checked')?.value;
+    let display = document.getElementById("display");
+    if (come === "I can't come") {
+      display.style.display = "none";
+    } else {
+      display.style.display = "";
+    }
+  })
+
+  let display = document.getElementById("display");
+
+  display.addEventListener("mouseout", function () {
+    const numberPeopleValue = document.getElementById("numberPeople").value;
+    for (let valueNumber = 0; valueNumber < +numberPeopleValue; valueNumber++) {
+      if (+numberPeopleValue != valueNumber) {
+        numberPeopleValue.style.backgroundColor = "red";
+      }
+    }
+  })
+
+  const map = document.getElementById("map");
+  const mapCheck = document.getElementById("mapButton");
+
+  if (map.style.display != "none") {
+    map.style.display = "none";
+  }
+
+  mapCheck.addEventListener("click", function () {
+    if (map.style.display != "block") {
+      map.style.display = "block";
+    } else {
+      map.style.display = "none";
+    }
+  });
+
+  var checkValuePeopleCount = document.getElementById("numberPeople");
+
+  checkValuePeopleCount.addEventListener("mouseout", function() {
+    let valuePeople = document.getElementById("numberPeople").value;
+    let isNumber = /^\d+$/.test(valuePeople);
+    if ( isNumber !== true){
+      checkValuePeopleCount.placeholder = "Введите число";
+      checkValuePeopleCount.classList.remove("numberBox");
+      checkValuePeopleCount.classList.add("numberBoxRed");
+      checkValuePeopleCount.value = "";
+    } else {
+      checkValuePeopleCount.style.color = "black";
+      checkValuePeopleCount.classList.remove("numberBoxRed");
+      checkValuePeopleCount.classList.add("numberBox");
+    }
+  });
+
+
+
+  let dataCheck = true;
+
+  button.addEventListener("mouseover", function () {
+    const data = new FormData(form);
+    let dataFio = document.getElementById("fioInput").value;
+    let numberPeople = document.getElementById("numberPeople").value;
+    let beverages = document.querySelector('input[name=beverages]:checked')?.value;
+    let come = document.querySelector('input[name=come]:checked')?.value;
+    let display = document.getElementById("display");
+    if (display.style.display === "") {
+      if (dataFio.length !== 0 && numberPeople !== "" && come !== undefined && beverages !== undefined) {
+        if (dataCheck === true) {
+          button.removeAttribute('disabled', false);
+          button.style.backgroundColor = "rgb(0, 0, 0)";
+        }
+        form.addEventListener("submit", function (event) {
+          dataCheck = false;
+          for (const entry of data) {
+            dataForBackend.push(entry);
+          }
+          event.preventDefault();
+          form.reset();
+          buttonState();
+          converter(dataForBackend);
+        },
+          false
+        );
+      } else {
+        buttonState();
+      }
+    } else {
+      if (dataFio.length !== 0 && come !== undefined) {
+        if (dataCheck === true) {
+          button.removeAttribute('disabled', false);
+          button.style.backgroundColor = "rgb(0, 0, 0)";
+        }
+        form.addEventListener("submit", function (event) {
+          dataCheck = false;
+          for (const entry of data) {
+            dataForBackend.push(entry);
+          }
+          event.preventDefault();
+          form.reset();
+          buttonState();
+          converter(dataForBackend);
+        },
+          false
+        )
+      } else {
+        buttonState();
+      }
+    }
+  });
+
+  function converter(value) {
+    for (let index = 0; index < value.length; index++) {
+      let valueName = value[index][0];
+      let valueData = value[index][1];
+      if (valueName === "numberPeople") {
+        valueData = +valueData
+      }
+      dataJson[valueName] = valueData;
+    }
+    sendingDataToTheServer(JSON.stringify(dataJson))
+  }
+
+
+  async function sendingDataToTheServer(data) {
+    let response = await fetch("{% url 'request_form' %}", {
+      method: "POST",
+      body: data
+    });
+  }
+
+</script>
+{% endblock %}
