@@ -143,9 +143,7 @@
   </div>
 
   <div class="object" id="map" style="display : none;">
-    <script type="text/javascript" charset="utf-8" async
-      src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3006b65469bfe46bf6d5b4872a8cb9dd5fdb777085f476fe7f05da01f62a7667&amp;width=1000&amp;height=400&amp;lang=ru_RU&amp;scroll=true"
-      id=""></script>
+    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A2030c91cdf370b6a47f48aa59f1d86ee98b22fe0a9d40bc4fe7430f88cd62fec&amp;width=1000&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
   </div><br><br>
   <!-- page 6 -->
   
@@ -184,7 +182,7 @@
 
       <h1 class="mainword">Что предпочитаете из напитков?</h1>
 
-      <div class="listpad">
+      <div class="listpad" id="beveragesDiv">
         <input type="radio" id="redWine" name="beverages" class="radioDispla" value="red wine">
         <label for="redWine">Красное вино</label><br>
         <input type="radio" id="whiteWine" name="beverages" class="radioDispla" value="white wine">
@@ -209,9 +207,13 @@
   </form>
 </main>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/device.js/0.2.7/device.min.js"></script>
 <script>
   const dataForBackend = [];
   const dataJson = {};
+
+  const phone = device.mobile();
+  const desktop = device.desktop();
 
   var form = document.querySelector("form");
   var button = document.getElementById("button");
@@ -224,7 +226,7 @@
 
   var checkPresence = document.getElementById("comeR");
 
-  checkPresence.addEventListener("mouseout", function () {
+  checkPresence.addEventListener("click", function () {
     let come = document.querySelector('input[name=come]:checked')?.value;
     let display = document.getElementById("display");
     if (come === "I can't come") {
@@ -232,37 +234,34 @@
     } else {
       display.style.display = "";
     }
+    buttonCheck()
   })
 
   let display = document.getElementById("display");
 
-  display.addEventListener("mouseout", function () {
-    const numberPeopleValue = document.getElementById("numberPeople").value;
-    for (let valueNumber = 0; valueNumber < +numberPeopleValue; valueNumber++) {
-      if (+numberPeopleValue != valueNumber) {
-        numberPeopleValue.style.backgroundColor = "red";
+  if (desktop === true) {
+    display.addEventListener("mouseleave", function () {
+      const numberPeopleValue = document.getElementById("numberPeople").value;
+      for (let valueNumber = 0; valueNumber < +numberPeopleValue; valueNumber++) {
+        if (+numberPeopleValue != valueNumber) {
+          numberPeopleValue.style.backgroundColor = "red";
+        }
       }
-    }
-  })
-
-  const map = document.getElementById("map");
-  const mapCheck = document.getElementById("mapButton");
-
-  if (map.style.display != "none") {
-    map.style.display = "none";
+    })
+  } if (phone === true) {
+    display.addEventListener("touchend", function () {
+      const numberPeopleValue = document.getElementById("numberPeople").value;
+      for (let valueNumber = 0; valueNumber < +numberPeopleValue; valueNumber++) {
+        if (+numberPeopleValue != valueNumber) {
+          numberPeopleValue.style.backgroundColor = "red";
+        }
+      }
+    })
   }
-
-  mapCheck.addEventListener("click", function () {
-    if (map.style.display != "block") {
-      map.style.display = "block";
-    } else {
-      map.style.display = "none";
-    }
-  });
 
   var checkValuePeopleCount = document.getElementById("numberPeople");
 
-  checkValuePeopleCount.addEventListener("mouseout", function() {
+  checkValuePeopleCount.addEventListener("mouseleave", function() {
     let valuePeople = document.getElementById("numberPeople").value;
     let isNumber = /^\d+$/.test(valuePeople);
     if ( isNumber !== true){
@@ -277,11 +276,31 @@
     }
   });
 
+  let beveragesDiv = document.getElementById("beveragesDiv");
 
+  beveragesDiv.addEventListener("click", function () {
+    let beverages = document.querySelector('input[name=beverages]:checked')?.value;
+    if (beverages !== undefined){
+      buttonCheck()
+    } else {
+      buttonState()
+    }
+  });
+
+  let fio = document.getElementById("fio");
+
+  fio.addEventListener("mouseleave", function () {
+    let dataFio = document.getElementById("fioInput").value;
+    if (dataFio.length !== 0) {
+      buttonCheck()
+    } else {
+      buttonState()
+    }
+  });
 
   let dataCheck = true;
 
-  button.addEventListener("mouseover", function () {
+  function buttonCheck(){
     const data = new FormData(form);
     let dataFio = document.getElementById("fioInput").value;
     let numberPeople = document.getElementById("numberPeople").value;
@@ -331,7 +350,7 @@
         buttonState();
       }
     }
-  });
+  }
 
   function converter(value) {
     for (let index = 0; index < value.length; index++) {
@@ -352,6 +371,21 @@
       body: data
     });
   }
+
+  const map = document.getElementById("map");
+  const mapCheck = document.getElementById("mapButton");
+
+  if (map.style.display != "none") {
+    map.style.display = "none";
+  }
+  
+  mapCheck.addEventListener("click", function () {
+    if (map.style.display != "block") {
+      map.style.display = "block";
+    } else {
+      map.style.display = "none";
+    }
+  });
 
 </script>
 {% endblock %}
