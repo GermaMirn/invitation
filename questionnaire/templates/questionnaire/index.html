@@ -218,14 +218,38 @@
   var form = document.querySelector("form");
   var button = document.getElementById("button");
 
-  function buttonState() {
+  // Кнопка запрещена
+  function buttonStateFalse() {
     button.setAttribute('disabled', true);
     button.style.backgroundColor = "rgb(100, 100, 100)";
   }
-  buttonState();
+  buttonStateFalse();
+
+  // Кнопка разрешена
+  function buttonStateTrue(){
+    let dataFio = document.getElementById("fioInput").value;
+    let numberPeople = document.getElementById("numberPeople").value;
+    let beverages = document.querySelector('input[name=beverages]:checked')?.value;
+    let come = document.querySelector('input[name=come]:checked')?.value;
+    if (dataFio.length !== 0 && numberPeople !== "" && beverages !== undefined && come !== undefined){
+      button.removeAttribute('disabled', false);
+      button.style.backgroundColor = "rgb(0, 0, 0)";
+      button.addEventListener('click', function(){
+        sendDataToConverter();
+      })
+    } if (dataFio.length !== 0 && come !== undefined) {
+      button.removeAttribute('disabled', false);
+      button.style.backgroundColor = "rgb(0, 0, 0)";
+      button.addEventListener('click', function(){
+        sendDataToConverter();
+      })
+    }
+  }
+
 
   var checkPresence = document.getElementById("comeR");
 
+  // обработчик события(если выбирают опредл радио кнопку)
   checkPresence.addEventListener("click", function () {
     let come = document.querySelector('input[name=come]:checked')?.value;
     let display = document.getElementById("display");
@@ -234,33 +258,14 @@
     } else {
       display.style.display = "";
     }
-    buttonCheck()
+    buttonStateTrue()
   })
 
   let display = document.getElementById("display");
 
-  if (desktop === true) {
-    display.addEventListener("mouseleave", function () {
-      const numberPeopleValue = document.getElementById("numberPeople").value;
-      for (let valueNumber = 0; valueNumber < +numberPeopleValue; valueNumber++) {
-        if (+numberPeopleValue != valueNumber) {
-          numberPeopleValue.style.backgroundColor = "red";
-        }
-      }
-    })
-  } if (phone === true) {
-    display.addEventListener("touchend", function () {
-      const numberPeopleValue = document.getElementById("numberPeople").value;
-      for (let valueNumber = 0; valueNumber < +numberPeopleValue; valueNumber++) {
-        if (+numberPeopleValue != valueNumber) {
-          numberPeopleValue.style.backgroundColor = "red";
-        }
-      }
-    })
-  }
-
   var checkValuePeopleCount = document.getElementById("numberPeople");
 
+  // обработчик события(если не подходит тип данных)
   checkValuePeopleCount.addEventListener("mouseleave", function() {
     let valuePeople = document.getElementById("numberPeople").value;
     let isNumber = /^\d+$/.test(valuePeople);
@@ -274,66 +279,57 @@
       checkValuePeopleCount.classList.remove("numberBoxRed");
       checkValuePeopleCount.classList.add("numberBox");
     }
+    buttonStateTrue()
   });
 
   let beveragesDiv = document.getElementById("beveragesDiv");
 
+  // проверка для разрешения кнопки
   beveragesDiv.addEventListener("click", function () {
     let beverages = document.querySelector('input[name=beverages]:checked')?.value;
     if (beverages !== undefined){
-      buttonCheck()
+      buttonStateTrue()
+      beverages = undefined;
     } else {
-      buttonState()
+      buttonStateFalse()
     }
   });
 
   let fio = document.getElementById("fio");
 
+  // проверка для разрешения кнопки
   fio.addEventListener("mouseleave", function () {
     let dataFio = document.getElementById("fioInput").value;
     if (dataFio.length !== 0) {
-      buttonCheck()
+      buttonStateTrue()
     } else {
-      buttonState()
+      buttonStateFalse()
     }
   });
 
   let dataCheck = true;
 
-  function buttonCheck(){
+  // отправка данных на конвертер
+  function sendDataToConverter(){
     const data = new FormData(form);
-    let dataFio = document.getElementById("fioInput").value;
-    let numberPeople = document.getElementById("numberPeople").value;
-    let beverages = document.querySelector('input[name=beverages]:checked')?.value;
-    let come = document.querySelector('input[name=come]:checked')?.value;
     let display = document.getElementById("display");
     if (display.style.display === "") {
-      if (dataFio.length !== 0 && numberPeople !== "" && come !== undefined && beverages !== undefined) {
         if (dataCheck === true) {
-          button.removeAttribute('disabled', false);
-          button.style.backgroundColor = "rgb(0, 0, 0)";
+          form.addEventListener("submit", function (event) {
+            dataCheck = false;
+            for (const entry of data) {
+              dataForBackend.push(entry);
+            }
+            event.preventDefault();
+            form.reset();
+            buttonStateFalse();
+            converter(dataForBackend);
+          },
+            false
+          );
         }
-        form.addEventListener("submit", function (event) {
-          dataCheck = false;
-          for (const entry of data) {
-            dataForBackend.push(entry);
-          }
-          event.preventDefault();
-          form.reset();
-          buttonState();
-          converter(dataForBackend);
-        },
-          false
-        );
-      } else {
-        buttonState();
-      }
     } else {
-      if (dataFio.length !== 0 && come !== undefined) {
-        if (dataCheck === true) {
-          button.removeAttribute('disabled', false);
-          button.style.backgroundColor = "rgb(0, 0, 0)";
-        }
+      if (dataCheck === true) {
         form.addEventListener("submit", function (event) {
           dataCheck = false;
           for (const entry of data) {
@@ -341,17 +337,18 @@
           }
           event.preventDefault();
           form.reset();
-          buttonState();
+          buttonStateFalse();
           converter(dataForBackend);
         },
           false
         )
-      } else {
-        buttonState();
       }
     }
   }
 
+  let dataCheckServer = true;
+
+  // записываем данные в формат json
   function converter(value) {
     for (let index = 0; index < value.length; index++) {
       let valueName = value[index][0];
@@ -361,17 +358,21 @@
       }
       dataJson[valueName] = valueData;
     }
-    sendingDataToTheServer(JSON.stringify(dataJson))
+    if (dataCheckServer === true){
+      dataCheckServer = false;
+      sendingDataToTheServer(JSON.stringify(dataJson))
+    }
   }
 
-
-  async function sendingDataToTheServer(data) {
+  // отправляем данные на сервер
+  async function sendingDataToTheServer(data, dataCheckServer) {
     let response = await fetch("{% url 'request_form' %}", {
       method: "POST",
       body: data
     });
   }
 
+  // функции с картой
   const map = document.getElementById("map");
   const mapCheck = document.getElementById("mapButton");
 

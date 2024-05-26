@@ -279,6 +279,7 @@ header {
 
 .numberBoxRed {
   border: none;
+	border-color: red;
 	width: 100%;
 	background-color: transparent;
 	height: 20px;
