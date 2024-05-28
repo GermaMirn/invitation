@@ -355,6 +355,10 @@ header {
 	margin-right: auto;
 }
 
+#FullQuestionnaire{
+	display: "";
+}
+
 #textBeforeTheQuestionnaire {
 	margin-top: 70px;
 	display: flex;
@@ -410,4 +414,58 @@ label {
 	label {
 		font-size: 0.75em;
 	}
+}
+
+.timerValue {
+	font-size: 36px;
+	display: inline-block;
+	margin-right: 25px;
+	margin-left: 25px;
+	margin-top: 60px;
+}
+
+.timerNumber{
+	margin-top: -70px;
+	font-size: 20px;
+}
+
+#dayNumber{
+	margin-left: 15px;
+}
+
+#hourNumber{
+	margin-right: 10px;
+}
+
+#minNumber{
+	margin-left: 10px;
+}
+
+#secNumber{
+	margin-right: 2px;
+}
+
+#contact {
+ margin-bottom: 20px;
+ margin-left: auto;
+ margin-right: auto;
+}
+
+#husband {
+	padding-top: 30px;
+	padding-bottom:15px
+}
+
+#coordinator {
+	padding-top: 15px;
+	padding-bottom: 30px;
+}
+
+.images-wait {
+	padding-left: 20px;
+}
+
+.img-contact{
+	padding-left: 0px;
+	padding-top: 45px;
 }

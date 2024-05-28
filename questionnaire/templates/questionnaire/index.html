@@ -148,63 +148,131 @@
   <!-- page 6 -->
   
   <!-- page 7 -->
-  <div id="textBeforeTheQuestionnaire">
-    <h1 class="answerqus">Ответьте пожалуйста на несколько вопросов, которые мы для вас подготовили </h1>
-    <img class="ArrowDown" src="static/images/icons8-двойная-стрелка-вниз.gif" alt="стрелочка вниз"></img>
-  </div>
-
-  <form action="" method="POST" id="idForForm">
-    {% csrf_token %}
-    <h1 class="mainword">ФИО</h1>
-
-    <div id="fio">
-      <input class="fioBox" type="text" placeholder="Напишите, пожалуйста, ваши ФИО" id="fioInput" name="fio" />
+  <div id="FullQuestionnaire">
+    <div id="textBeforeTheQuestionnaire">
+      <h1 class="answerqus">Ответьте пожалуйста на несколько вопросов, которые мы для вас подготовили </h1>
+      <img class="ArrowDown" src="static/images/icons8-двойная-стрелка-вниз.gif" alt="стрелочка вниз"></img>
     </div>
 
-    <h1 class="mainword">Сможете ли вы присутствовать на нашем торжестве?</h1>
-
-    <div class="listpad" id="comeR">
-      <input type="radio" id="IWillCome" name="come" class="radio" value="I will come">
-      <label for="IWillCome">Я с удовольствием приду</label><br>
-      <input type="radio" id="ICantCome" name="come" class="radio" value="I can't come">
-      <label for="ICantCome"> К сожалению, не смогу присутствовать</label><br>
-      <input type="radio" id="IWillInformYouLater" name="come" class="radio" value="I will inform you later">
-      <label for="IWillInformYouLater">Сообщу позже</label>
-    </div>
-
-    <div id="display">
-      <h1 class="mainword">Сколько людей придут вместе с вами?</h1>
+    <form action="" method="POST" id="idForForm">
+      {% csrf_token %}
+      <h1 class="mainword">ФИО</h1>
 
       <div id="fio">
-        <input class="numberBox" type="text" placeholder="Напишите,  пожалуйста, количество человек" id="numberPeople"
-          name="numberPeople" />
+        <input class="fioBox" type="text" placeholder="Напишите, пожалуйста, ваши ФИО" id="fioInput" name="fio" />
       </div>
 
-      <h1 class="mainword">Что предпочитаете из напитков?</h1>
+      <h1 class="mainword">Сможете ли вы присутствовать на нашем торжестве?</h1>
 
-      <div class="listpad" id="beveragesDiv">
-        <input type="radio" id="redWine" name="beverages" class="radioDispla" value="red wine">
-        <label for="redWine">Красное вино</label><br>
-        <input type="radio" id="whiteWine" name="beverages" class="radioDispla" value="white wine">
-        <label for="whiteWine">Белое вино</label><br>
-        <input type="radio" id="champagne" name="beverages" class="radioDispla" value="champagne">
-        <label for="champagne">Шампанское</label><br>
-        <input type="radio" id="cognac" name="beverages" class="radioDispla" value="cognac">
-        <label for="cognac">Коньяк</label><br>
-        <input type="radio" id="whiskey" name="beverages" class="radioDispla" value="whiskey">
-        <label for="whiskey">Виски</label><br>
-        <input type="radio" id="vodka" name="beverages" class="radioDispla" value="vodka">
-        <label for="vodka">Водка</label><br>
-        <input type="radio" id="I don't drink alcohol" name="beverages" class="radioDispla"
-          value="I don't drink alcohol">
-        <label for="I don't drink alcohol">Я не пью алкоголь</label><br>
+      <div class="listpad" id="comeR">
+        <input type="radio" id="IWillCome" name="come" class="radio" value="I will come">
+        <label for="IWillCome">Я с удовольствием приду</label><br>
+        <input type="radio" id="ICantCome" name="come" class="radio" value="I can't come">
+        <label for="ICantCome"> К сожалению, не смогу присутствовать</label><br>
+        <input type="radio" id="IWillInformYouLater" name="come" class="radio" value="I will inform you later">
+        <label for="IWillInformYouLater">Сообщу позже</label>
+      </div>
+
+      <div id="display">
+        <h1 class="mainword">Сколько людей придут вместе с вами?</h1>
+
+        <div id="fio">
+          <input class="numberBox" type="text" placeholder="Напишите,  пожалуйста, количество человек" id="numberPeople"
+            name="numberPeople" />
+        </div>
+
+        <h1 class="mainword">Что предпочитаете из напитков?</h1>
+
+        <div class="listpad" id="beveragesDiv">
+          <input type="radio" id="redWine" name="beverages" class="radioDispla" value="red wine">
+          <label for="redWine">Красное вино</label><br>
+          <input type="radio" id="whiteWine" name="beverages" class="radioDispla" value="white wine">
+          <label for="whiteWine">Белое вино</label><br>
+          <input type="radio" id="champagne" name="beverages" class="radioDispla" value="champagne">
+          <label for="champagne">Шампанское</label><br>
+          <input type="radio" id="cognac" name="beverages" class="radioDispla" value="cognac">
+          <label for="cognac">Коньяк</label><br>
+          <input type="radio" id="whiskey" name="beverages" class="radioDispla" value="whiskey">
+          <label for="whiskey">Виски</label><br>
+          <input type="radio" id="vodka" name="beverages" class="radioDispla" value="vodka">
+          <label for="vodka">Водка</label><br>
+          <input type="radio" id="I don't drink alcohol" name="beverages" class="radioDispla"
+            value="I don't drink alcohol">
+          <label for="I don't drink alcohol">Я не пью алкоголь</label><br>
+        </div>
+      </div>
+
+      <div id="buttonLocation">
+        <button id="button">Отправить</button>
+      </div>
+    </form>
+  </div>
+  <!-- page 8 -->
+  <div id="fullTimer" style="display: none;">
+
+    <div class="object">
+      <div>
+        <img src="static/images/Group 27.svg" alt="">
+      </div>
+    </div>
+    
+    <div class="object">
+      <div class="object-text">
+        И будем очень рады видеть Вас через
+      </div>
+    </div>
+    
+    <div class="object">
+      <div id="timer">
+        <div class="timerValue">
+          <h1 id="timerDay"></h1><br>
+          <p class="timerNumber" id="dayNumber">дней</p>
+        </div>
+        <div class="timerValue">
+          <h1 id="timerHour" ></h1><br>
+          <p class="timerNumber" id="hourNumber">часов</p>
+        </div>
+        <div class="timerValue">
+          <h1 id="timerMin"></h1><br>
+          <p class="timerNumber" id="minNumber">минут</p>
+        </div>
+        <div class="timerValue">
+          <h1 id="timerSec"></h1><br>
+          <p class="timerNumber" id="secNumber">секунд</p>
+        </div>
       </div>
     </div>
 
-    <div id="buttonLocation">
-      <button id="button">Отправить</button>
+    <hr style="width: 150px;">
+    
+    <div class="object">
+      <div class="images img-contact">
+        <img src="static/images/Контакты.svg" alt="">
+      </div>
     </div>
-  </form>
+
+    <div class="object">
+      <div id="contact">
+        <div id="husband">
+          <p><b>Жених(Илья): +79814502353 </b><br></p>
+        </div>
+        <div id="wife">
+          <p><b>Невеста(Алиса): +79118598874 </b><br></p>
+        </div>
+        <div id="coordinator">
+          <p><b>Координатор(Валерия): +79114502375 </b><br></p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="object">
+      <div class="images images-wait">
+        <img src="static/images/Мы Вас ждем!.svg" alt="">
+      </div>
+    </div>
+    
+  </div>
+  <!-- page 8 -->
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/device.js/0.2.7/device.min.js"></script>
@@ -218,14 +286,14 @@
   var form = document.querySelector("form");
   var button = document.getElementById("button");
 
-  // Кнопка запрещена
+  // button is disabled
   function buttonStateFalse() {
     button.setAttribute('disabled', true);
     button.style.backgroundColor = "rgb(100, 100, 100)";
   }
   buttonStateFalse();
 
-  // Кнопка разрешена
+  // button enabled
   function buttonStateTrue(){
     let dataFio = document.getElementById("fioInput").value;
     let numberPeople = document.getElementById("numberPeople").value;
@@ -237,19 +305,25 @@
       button.addEventListener('click', function(){
         sendDataToConverter();
       })
-    } if (dataFio.length !== 0 && come !== undefined) {
+    } if (dataFio.length !== 0 && come !== undefined && come === "I can't come") {
       button.removeAttribute('disabled', false);
       button.style.backgroundColor = "rgb(0, 0, 0)";
       button.addEventListener('click', function(){
         sendDataToConverter();
       })
+    } if (come !== "I can't come" && dataFio.length !== 0 && beverages === undefined && numberPeople === "") {
+      buttonStateFalse();
+    } if (beverages !== undefined && come !== undefined && dataFio.length !== 0 && numberPeople === ""){
+      buttonStateFalse();
+    } if (beverages !== undefined && come !== undefined && dataFio.length === 0 && numberPeople !== ""){
+      buttonStateFalse();
     }
   }
 
 
   var checkPresence = document.getElementById("comeR");
 
-  // обработчик события(если выбирают опредл радио кнопку)
+  // event handler (if selects radio detect button)
   checkPresence.addEventListener("click", function () {
     let come = document.querySelector('input[name=come]:checked')?.value;
     let display = document.getElementById("display");
@@ -257,6 +331,7 @@
       display.style.display = "none";
     } else {
       display.style.display = "";
+      buttonStateTrue()
     }
     buttonStateTrue()
   })
@@ -265,7 +340,7 @@
 
   var checkValuePeopleCount = document.getElementById("numberPeople");
 
-  // обработчик события(если не подходит тип данных)
+  // event handler (if the data type is not suitable)
   checkValuePeopleCount.addEventListener("mouseleave", function() {
     let valuePeople = document.getElementById("numberPeople").value;
     let isNumber = /^\d+$/.test(valuePeople);
@@ -284,7 +359,7 @@
 
   let beveragesDiv = document.getElementById("beveragesDiv");
 
-  // проверка для разрешения кнопки
+  // check for button permission
   beveragesDiv.addEventListener("click", function () {
     let beverages = document.querySelector('input[name=beverages]:checked')?.value;
     if (beverages !== undefined){
@@ -297,7 +372,7 @@
 
   let fio = document.getElementById("fio");
 
-  // проверка для разрешения кнопки
+  // check for button permission
   fio.addEventListener("mouseleave", function () {
     let dataFio = document.getElementById("fioInput").value;
     if (dataFio.length !== 0) {
@@ -309,7 +384,7 @@
 
   let dataCheck = true;
 
-  // отправка данных на конвертер
+  // sending data to converter
   function sendDataToConverter(){
     const data = new FormData(form);
     let display = document.getElementById("display");
@@ -348,7 +423,7 @@
 
   let dataCheckServer = true;
 
-  // записываем данные в формат json
+  // writing data to json format
   function converter(value) {
     for (let index = 0; index < value.length; index++) {
       let valueName = value[index][0];
@@ -358,13 +433,18 @@
       }
       dataJson[valueName] = valueData;
     }
+    if (dataJson["come"] === "I can't come"){
+      dataJson["numberPeople"] = 0
+      dataJson["beverages"] = ""
+    }
     if (dataCheckServer === true){
       dataCheckServer = false;
       sendingDataToTheServer(JSON.stringify(dataJson))
+      checkButtonStatusForTimer()
     }
   }
 
-  // отправляем данные на сервер
+  // send data to the Django server
   async function sendingDataToTheServer(data, dataCheckServer) {
     let response = await fetch("{% url 'request_form' %}", {
       method: "POST",
@@ -372,7 +452,7 @@
     });
   }
 
-  // функции с картой
+  // function with map
   const map = document.getElementById("map");
   const mapCheck = document.getElementById("mapButton");
 
@@ -388,5 +468,48 @@
     }
   });
 
+  // timer view
+  const fullQuestionnaire = document.getElementById("FullQuestionnaire");
+  const fullTimer = document.getElementById("fullTimer");
+  fullTimer.style.display = "none";
+  
+  function checkButtonStatusForTimer(){
+    if (dataCheckServer === false){
+      if (fullQuestionnaire.style.display !== "none") {
+        fullQuestionnaire.style.display = "none";
+        if (fullTimer.style.display === "none"){
+          CalculateDate()
+          fullTimer.style.display = "";
+        }
+      }
+    } else {
+      fullQuestionnaire.style.display = "";
+    }
+  }
+
+  // calculate the date
+  const endTime = new Date("2024-08-08 00:00:00").getTime();
+
+  function CalculateDate(){
+    const timer = setInterval(() => {
+    const clientTim = new Date().getTime();
+    const remaining = (endTime - clientTim);
+
+    const days = Math.floor(remaining / (24 * 60 * 60 * 1000));
+    const hours = Math.floor((remaining % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+    const mins = Math.floor((remaining % (60 * 60 * 1000)) / (60 * 1000));
+    const secs = Math.floor((remaining % (60 * 1000)) / 1000);
+
+    document.getElementById("timerDay").textContent = days;
+    document.getElementById("timerHour").textContent = hours;
+    document.getElementById("timerMin").textContent = mins;
+    document.getElementById("timerSec").textContent = secs;
+
+    if (remaining < 0) {
+      clearInterval(timer);
+      document.getElementById("timer").textContent = "Время истекло";
+    }
+    }, 1000);
+  }
 </script>
 {% endblock %}
