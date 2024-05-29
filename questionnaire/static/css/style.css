@@ -417,32 +417,32 @@ label {
 }
 
 .timerValue {
-	font-size: 36px;
+	font-size: 19px;
 	display: inline-block;
-	margin-right: 25px;
-	margin-left: 25px;
+	margin-right: 11px;
+	margin-left: 18px;
 	margin-top: 60px;
 }
 
 .timerNumber{
-	margin-top: -70px;
+	margin-top: -50px;
 	font-size: 20px;
 }
 
 #dayNumber{
-	margin-left: 15px;
+	margin-left: 0px;
 }
 
 #hourNumber{
-	margin-right: 10px;
+	margin-left: -10px;
 }
 
 #minNumber{
-	margin-left: 10px;
+	margin-left: -8px;
 }
 
 #secNumber{
-	margin-right: 2px;
+	margin-right: 6px;
 }
 
 #contact {
